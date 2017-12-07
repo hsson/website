@@ -1,7 +1,11 @@
 package main
 
 import (
+	"flag"
 	"fmt"
+	"path/filepath"
+
+	"github.com/hsson/go-website/style"
 )
 
 const banner = ` _             _                                                               
@@ -13,7 +17,20 @@ const banner = ` _             _
                                                                      __/ |     
                                                                     |___/      `
 
+var (
+	outputDir = flag.String("out", "build", "Specify the output directory where generated files will be placed")
+
+	styleIn  = filepath.Join("resources", "styles")
+	styleOut = filepath.Join("assets", "css")
+)
+
 func main() {
+	flag.Parse()
 	fmt.Println(banner)
-	// TODO: Parse styles
+	fmt.Printf("Generated files will be put in \"%s\"...\n", *outputDir)
+	sheets, err := style.Generate(styleIn, *outputDir, styleOut)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Created sheets: %v\n", sheets)
 }
