@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/hsson/go-website/post"
 	"github.com/hsson/go-website/style"
 )
 
@@ -22,6 +23,8 @@ var (
 
 	styleIn  = filepath.Join("resources", "styles")
 	styleOut = filepath.Join("assets", "css")
+
+	postsIn = filepath.Join("resources", "posts")
 )
 
 func main() {
@@ -33,4 +36,13 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("Created sheets: %v\n", sheets)
+
+	posts, err := post.LoadAll(postsIn)
+	if err != nil {
+		panic(err)
+	}
+
+	for _, post := range posts {
+		fmt.Println(post.Content)
+	}
 }

@@ -10,7 +10,7 @@ import (
 
 const cssPattern = "*.css"
 
-type channelStringRes struct {
+type stringChannelRes struct {
 	result string
 	err    error
 }
@@ -31,12 +31,12 @@ func Generate(inputDir, artifactDir, subDir string) ([]string, error) {
 	return sheets, err
 }
 
-func copyRoutine(inputFile, outputDir string, resChannel chan channelStringRes) {
+func copyRoutine(inputFile, outputDir string, resChannel chan stringChannelRes) {
 	_, filename := filepath.Split(inputFile)
 	outPath := filepath.Join(outputDir, filename)
 	err := util.CopyFile(inputFile, outPath)
 
-	resChannel <- channelStringRes{filename, err}
+	resChannel <- stringChannelRes{filename, err}
 }
 
 func copyRegulars(inputDir, artifactDir, subDir string) (result []string, err error) {
@@ -45,7 +45,7 @@ func copyRegulars(inputDir, artifactDir, subDir string) (result []string, err er
 		return result, err
 	}
 
-	resultChannel := make(chan channelStringRes)
+	resultChannel := make(chan stringChannelRes)
 	for _, sheet := range stylesheets {
 		go copyRoutine(sheet, filepath.Join(artifactDir, subDir), resultChannel)
 	}
