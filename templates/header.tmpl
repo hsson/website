@@ -1,0 +1,38 @@
+{{define "header"}}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{- .GoogleAnalytics -}}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '{{- .GoogleAnalytics -}}');
+        </script>
+
+        <meta charset="utf-8" />
+        <title>{{ .Title }}{{ .TitleSuffix }}</title>
+        <link rel="icon" href="favicon.png">
+        <link rel="stylesheet" href="assets/css/style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="author" content="Alexander Håkansson" />
+        <meta name="description" content="{{ .Description }}" />
+        <meta name="theme-color" content="#44d18d" />
+
+        <meta property="og:url" content="{{ .BaseURL }}{{ .URL }}" />
+        <meta property="og:title" content="{{ .Title }}{{ .TitleSuffix }}" />
+        <meta property="og:description" content="{{ .Description }}" />
+    </head>
+    <body>
+        <header>
+            <div class="header-content">
+                <div class="header-logo">
+                    AH
+                </div>
+                <h1>Alexander Håkansson</h1>
+                {{ template "nav" . }}
+            </div>
+        </header>
+        <div class="main-content">
+{{end}}

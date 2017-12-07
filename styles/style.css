@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Montserrat:300');
+
+a {
+    color: #fff0d5;
+}
+
+html {
+    font-size: 13pt;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    color: #fff0d5;
+    background-color: #22364e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1d3045;
+    color: #fff0d5;
+    width: 100%;
+
+    text-align: center;
+}
+
+header h1 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+header nav {
+    padding-bottom: 2rem;
+}
+
+header nav li {
+    display: block;
+    margin-right: 0.5rem;
+    padding: 0.2rem;
+}
+
+header nav a {
+    text-decoration: none;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+header nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header-logo {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #44d18d;
+    font-family: 'Inconsolata', monospace;
+}
+
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+    color: #44d18d;
+    font-family: 'Inconsolata', monospace;
+    text-decoration: none;
+}
+
+p {
+    line-height: 140%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.main-content {
+    margin: 2rem;
+}
+
+.main-content p {
+    text-align: left;
+}
+
+nav .active::before {
+    content: ">\00a0\00a0\00a0"; /* \00a0 is whitespace */
+}
+
+nav .active::after {
+    content: "\00a0\00a0\00a0<"; /* \00a0 is whitespace */
+}
+
+.post {
+    margin-bottom: 4rem;
+}
+
+.post-title {
+    margin-bottom: 2rem;
+}
+
+.post-title p {
+    font-size: 90%;
+}
+
+@media only screen and (min-width: 768px) {
+
+    html {
+        font-size: 12pt;
+    }
+
+    header {
+        position: absolute;
+        width: 17rem;
+        height: 100%;
+        top: 0;
+        left: 0;
+
+        overflow: auto;
+    }
+
+    .header-logo {
+        background-color: #22364e;
+        display: block;
+        border-style: solid;
+        border-width: 0.25rem;
+        border-color: #44d18d;
+        color: #44d18d;
+        font-family: 'Inconsolata', monospace;
+        font-size: 5rem;
+        padding: 1.5rem;
+        
+        margin-top: 5.5rem;
+        width: 5.5rem;
+        height: 5.5rem;
+        margin-left: 4.12rem;
+    }
+
+    .header-content {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+
+        padding-bottom: 5rem;
+    }
+
+    .main-content {
+        margin: 4rem;
+        margin-left: 21rem;
+        max-width: 500px;
+    }
+
+    .main-content p {
+        text-align: justify;
+    }
+}

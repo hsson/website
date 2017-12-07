@@ -1,0 +1,14 @@
+{{define "nav"}}
+<nav>
+    <ul>
+        <li {{ if eq .URL "/" }} class="active" {{end}}><a href="/">Home</a></li>
+        <li {{ if eq .URL "/posts.html" }} class="active" {{end}}><a href="/posts.html">Posts</a></li>
+        <li {{ if eq .URL "/projects.html" }} class="active" {{end}}><a href="/projects.html">Projects</a></li>
+        <br />
+        <li><a href="https://www.github.com/hsson">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/alexanderhakansson/">LinkedIn</a></li>
+        <li><a href="mailto:alex.hsson@gmail.com?subject=Hello Alexander">Email</a></li>
+        <li><a href="https://twitter.com/AlexHakansson">Twitter</a></li>
+    </ul>
+</nav>
+{{end}}

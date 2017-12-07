@@ -15,4 +15,5 @@ const banner = ` _             _
 
 func main() {
 	fmt.Println(banner)
+	// TODO: Parse styles
 }
