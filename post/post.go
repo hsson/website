@@ -3,15 +3,31 @@ package post
 import (
 	"bufio"
 	"bytes"
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
 	"sort"
+	"time"
+
+	slugify "github.com/mozillazg/go-slugify"
 
 	"gopkg.in/yaml.v2"
 )
 
-const postPattern = "*.md"
+// FileEnding is the file ending that parsed posts have
+const FileEnding = "md"
+const postPattern = "*." + FileEnding
+const dateFormat = "2006-01-02"
+
+const metadataTemplate = `---
+title: %s
+slug: %s
+created: %s
+updated: %s
+location: %s
+author: %s
+---`
 
 type postChannelRes struct {
 	sourceFile string
@@ -84,6 +100,22 @@ func ParseFile(inFile string) (*Post, error) {
 		return post, err
 	}
 	return post, nil
+}
+
+// CreateMetadataString creates a correct metadata string that can be placed on the
+// top of a post file.
+func CreateMetadataString(title, slug, location, author string, created time.Time) string {
+	return fmt.Sprintf(metadataTemplate, title, slug, created, created, location, author)
+}
+
+// SlugFromTitle will create a post slug based on its title
+func SlugFromTitle(title string) (string, error) {
+	if title == "" {
+		return "", errors.New("can't create slug from an empty title")
+	}
+	datePrefix := time.Now().Format(dateFormat)
+	slug := slugify.Slugify(title)
+	return fmt.Sprintf("%s-%s", datePrefix, slug), nil
 }
 
 func processPostRoutine(inputFile string, resChannel chan postChannelRes) {

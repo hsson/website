@@ -4,9 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"path/filepath"
-
-	"github.com/hsson/go-website/post"
-	"github.com/hsson/go-website/style"
 )
 
 const banner = ` _             _                                                               
@@ -19,30 +16,33 @@ const banner = ` _             _
                                                                     |___/      `
 
 var (
-	outputDir = flag.String("out", "build", "Specify the output directory where generated files will be placed")
+	flagOutputDir = flag.String("out", "build", "Specify the output directory where generated files will be placed")
+	flagNewPost   = flag.Bool("new", false, "Specify this flag if you want to create a new post")
+	flagBuildSite = flag.Bool("build", false, "Specify this flag if you want to build the whole site")
 
 	styleIn  = filepath.Join("resources", "styles")
 	styleOut = filepath.Join("assets", "css")
 
 	postsIn = filepath.Join("resources", "posts")
+
+	defaultAction = buildSite
+)
+
+const (
+	defaultAuthor   = "Alexander Håkansson"
+	defaultLocation = "San Francisco"
+	fallbackEditor  = "vim"
 )
 
 func main() {
 	flag.Parse()
 	fmt.Println(banner)
-	fmt.Printf("Generated files will be put in \"%s\"...\n", *outputDir)
-	sheets, err := style.Generate(styleIn, *outputDir, styleOut)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Printf("Created sheets: %v\n", sheets)
 
-	posts, err := post.LoadAll(postsIn)
-	if err != nil {
-		panic(err)
-	}
-
-	for _, post := range posts {
-		fmt.Println(post.Content)
+	if *flagNewPost {
+		createNewPost()
+	} else if *flagBuildSite {
+		buildSite()
+	} else {
+		defaultAction()
 	}
 }
