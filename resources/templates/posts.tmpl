@@ -1,0 +1,17 @@
+{{define "posts"}}
+{{ template "header" . }}
+<h1>Looks like I've written something</h1>
+<p>
+    Here is a list in chronological order of all posts I've written 
+    and published to this website.
+</p>
+{{ range $index, $post := .Posts }}
+<div class="post">
+    <div class="post-title">
+        <h3><a href="{{- $.PostDirectory -}}/{{- $post.Slug -}}.html">{{ $post.Title }}</a></h3>
+        <p>{{ $post.FormattedDate }} @ {{ $post.Location }}</p>
+    </div>
+</div>
+{{end}}
+{{ template "footer" . }}
+{{end}}

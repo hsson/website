@@ -56,7 +56,6 @@ func LoadAll(inputDir string) (result []*Post, err error) {
 			fmt.Printf("Failed parsing of \"%s\"\n", res.sourceFile)
 			return result, res.err
 		}
-		fmt.Printf("Created post \"%s\"\n", res.post.Title)
 		result = append(result, res.post)
 	}
 	sort.Sort(ByCreationDate{result})

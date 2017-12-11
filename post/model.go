@@ -1,6 +1,7 @@
 package post
 
 import "time"
+import "fmt"
 
 // Post represents a blog post with both metadata and content
 type Post struct {
@@ -12,6 +13,8 @@ type Post struct {
 	Author   string    `yaml:"author"`
 	Content  string    `yaml:"-"`
 }
+
+const timeFormat = "2006-01-02 15:04 (UTC-0700)"
 
 // Posts is a sortable collection of Post
 type Posts []*Post
@@ -29,4 +32,13 @@ type ByCreationDate struct{ Posts }
 // Less will determine which of two posts should be first
 func (by ByCreationDate) Less(i, j int) bool {
 	return by.Posts[i].Created.Before(by.Posts[j].Created)
+}
+
+func (p Post) String() string {
+	return fmt.Sprintf("%s — %s", p.Created.Format(dateFormat), p.Title)
+}
+
+// FormattedDate gives the creation data of the post with some nice formatting
+func (p Post) FormattedDate() string {
+	return p.Created.Format(timeFormat)
 }

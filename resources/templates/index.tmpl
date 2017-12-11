@@ -1,0 +1,15 @@
+{{- define "index" -}}
+{{ template "header" . }}
+{{- $post := (index .Posts 0) -}}
+<div class="post">
+    <div class="post-title">
+        <h1>{{- $post.Title -}}</h1>
+        <p>{{ $post.FormattedDate }} @ {{ $post.Location }}</p>
+    </div>
+    <div class="post-content">
+        {{ $post.Content }}  
+    </div>
+</div>
+<a href="/posts.html">Previous posts</a>
+{{ template "footer" . }}
+{{end}}

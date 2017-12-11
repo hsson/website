@@ -1,0 +1,22 @@
+base_url: 'https://hakansson.xyz'
+title_suffix: ' | Alexander Håkansson'
+default_description: &default_description 'The personal website of Alexander Håkansson, a student, software developer and awesome person.'
+google_analytics_code: 'UA-110080760-1'
+post_template: 'post'
+post_directory: 'p'
+
+pages:
+  - title: 'Home'
+    description: *default_description
+    template: 'index'
+    url: '/'
+
+  - title: 'Posts'
+    description: *default_description
+    template: 'posts'
+    url: '/posts.html'
+  
+  - title: 'Projects'
+    description: *default_description
+    template: 'projects'
+    url: '/projects.html'

@@ -1,0 +1,50 @@
+{{define "projects"}}
+{{ template "header" . }}
+<h1>Some of my projects</h1>
+<p>
+    Here is a list of some of my favorite projects that I've created or
+    contributed to. For a more comperhensive list; please check out my 
+    GitHub profile.
+</p>
+
+<div class="project">
+    <div class="project-title">
+        <h2>Chalmers Card Balance</h2>
+        <a href="https://github.com/hsson/card-balance-app">github.com/hsson/card-balance-app</a>
+        <br />
+        <a href="https://github.com/hsson/card-balance-backend">github.com/hsson/card-balance-backend</a>
+    </div>
+    <div class="project-content">
+         <p>
+             An android application written in Kotlin (and backend written in Go)
+             for students at my university.
+         </p>
+    </div>
+</div>
+
+<div class="project">
+     <div class="project-title">
+         <h2>Deep learning recommendations</h2>
+         <a href="https://github.com/recnet/model">github.com/recnet/model</a>
+     </div>
+     <div class="project-content">
+          <p>
+              A recommender system based on recurrent neural networks that I co-created as
+              part of my bachelor's thesis.                                      
+          </p>
+     </div>
+</div>
+
+<div class="project">
+     <div class="project-title">
+         <h2>Angular 2 &amp; Go Blog</h2>
+         <a href="https://github.com/hsson/blog">github.com/hsson/blog</a>
+     </div>
+     <div class="project-content">
+          <p>
+              A blogging engine/CMS that I created using Angular 2, Go and Google Cloud.                        
+          </p>
+     </div>
+</div>
+{{ template "footer" . }}
+{{end}}

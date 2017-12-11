@@ -16,14 +16,17 @@ const banner = ` _             _
                                                                     |___/      `
 
 var (
-	flagOutputDir = flag.String("out", "build", "Specify the output directory where generated files will be placed")
-	flagNewPost   = flag.Bool("new", false, "Specify this flag if you want to create a new post")
-	flagBuildSite = flag.Bool("build", false, "Specify this flag if you want to build the whole site")
+	flagOutputDir  = flag.String("out", "build", "Specify the output directory where generated files will be placed")
+	flagNewPost    = flag.Bool("new", false, "Specify this flag if you want to create a new post")
+	flagBuildSite  = flag.Bool("build", false, "Specify this flag if you want to build the whole site")
+	flagConfigFile = flag.String("config", "config.yaml", "Specify the config file to be used to generate the site")
 
 	styleIn  = filepath.Join("resources", "styles")
 	styleOut = filepath.Join("assets", "css")
 
 	postsIn = filepath.Join("resources", "posts")
+
+	templatesIn = filepath.Join("resources", "templates")
 
 	defaultAction = buildSite
 )

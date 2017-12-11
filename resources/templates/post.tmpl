@@ -1,0 +1,13 @@
+{{define "post"}}
+{{ template "header" . }}
+<div class="post">
+    <div class="post-title">
+        <h1>{{- .Post.Title -}}</h1>
+        <p>{{ .Post.FormattedDate }} @ {{ .Post.Location }}</p>
+    </div>
+    <div class="post-content">
+        {{ .Post.Content }}  
+    </div>
+</div>
+{{ template "footer" . }}
+{{end}}

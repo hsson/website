@@ -1,20 +1,22 @@
-{{define "header"}}
+{{- define "header" -}}
 <!doctype html>
 <html lang="en">
     <head>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{- .GoogleAnalytics -}}"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{- .GoogleAnalyticsCode -}}"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '{{- .GoogleAnalytics -}}');
+            gtag('config', '{{- .GoogleAnalyticsCode -}}');
         </script>
 
         <meta charset="utf-8" />
         <title>{{ .Title }}{{ .TitleSuffix }}</title>
         <link rel="icon" href="favicon.png">
-        <link rel="stylesheet" href="assets/css/style.css" />
+        {{ range $index, $value := .StylesheetFiles }}
+        <link rel="stylesheet" href="/{{- $value -}}" />
+        {{ end }}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="author" content="Alexander Håkansson" />
         <meta name="description" content="{{ .Description }}" />
