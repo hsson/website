@@ -17,6 +17,11 @@ html {
     padding: 0;
 }
 
+pre {
+    background-color: #1d3045;
+    padding: 1rem;
+}
+
 header {
     background-color: #1d3045;
     color: #fff0d5;

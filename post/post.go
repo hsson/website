@@ -12,6 +12,7 @@ import (
 	"time"
 
 	slugify "github.com/mozillazg/go-slugify"
+	blackfriday "gopkg.in/russross/blackfriday.v2"
 
 	"gopkg.in/yaml.v2"
 )
@@ -95,7 +96,8 @@ func ParseFile(inFile string) (*Post, error) {
 	if err != nil {
 		return post, err
 	}
-	post.Content = template.HTML(content.String())
+	formatted := blackfriday.Run(content.Bytes())
+	post.Content = template.HTML(formatted)
 	if err := scanner.Err(); err != nil {
 		return post, err
 	}
