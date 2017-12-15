@@ -108,12 +108,12 @@ func CreateMetadataString(title, slug, location, author string, created time.Tim
 	return fmt.Sprintf(metadataTemplate, title, slug, created, created, location, author)
 }
 
-// SlugFromTitle will create a post slug based on its title
-func SlugFromTitle(title string) (string, error) {
+// SlugFromPost will create a post slug based on its title
+func SlugFromPost(title string, creationDate time.Time) (string, error) {
 	if title == "" {
 		return "", errors.New("can't create slug from an empty title")
 	}
-	datePrefix := time.Now().Format(dateFormat)
+	datePrefix := creationDate.Format(dateFormat)
 	slug := slugify.Slugify(title)
 	return fmt.Sprintf("%s-%s", datePrefix, slug), nil
 }

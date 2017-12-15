@@ -8,8 +8,8 @@ import (
 
 func TestMetadata(t *testing.T) {
 	title := "Hej på dig"
-	slug, _ := SlugFromTitle(title)
 	theTime, _ := time.Parse(time.RFC3339, "2017-12-08T16:53:23.236728-08:00")
+	slug, _ := SlugFromPost(title, theTime)
 	author := "John Doe"
 	location := "Göteborg"
 	answer := `---
@@ -28,8 +28,9 @@ author: John Doe
 
 func TestSlug(t *testing.T) {
 	title := "Hej på dig"
-	datePrefix := time.Now().Format(dateFormat)
-	slug, err := SlugFromTitle(title)
+	theTime := time.Now()
+	datePrefix := theTime.Format(dateFormat)
+	slug, err := SlugFromPost(title, theTime)
 	if err != nil {
 		t.Errorf("The title should be okay")
 	}
@@ -40,7 +41,7 @@ func TestSlug(t *testing.T) {
 
 func TestSlugEmptyTitle(t *testing.T) {
 	emptyTitle := ""
-	_, err := SlugFromTitle(emptyTitle)
+	_, err := SlugFromPost(emptyTitle, time.Now())
 	if err == nil {
 		t.Errorf("Should not allow slugs from empty titles")
 	}

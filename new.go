@@ -36,9 +36,9 @@ func createPostBase() post.Post {
 	util.MaybeExitWithError(err)
 	postAuthor := parseWithDefault(readLineWithPrompt(os.Stdin, "Enter author: "), defaultAuthor)
 	postLocation := parseWithDefault(readLineWithPrompt(os.Stdin, "Enter location: "), defaultLocation)
-	postSlug, err := post.SlugFromTitle(postTitle)
-	util.MaybeExitWithError(err)
 	creationDate := time.Now()
+	postSlug, err := post.SlugFromPost(postTitle, creationDate)
+	util.MaybeExitWithError(err)
 	return post.Post{
 		Title:    postTitle,
 		Slug:     postSlug,
