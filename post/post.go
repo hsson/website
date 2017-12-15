@@ -107,7 +107,8 @@ func ParseFile(inFile string) (*Post, error) {
 // CreateMetadataString creates a correct metadata string that can be placed on the
 // top of a post file.
 func CreateMetadataString(title, slug, location, author string, created time.Time) string {
-	return fmt.Sprintf(metadataTemplate, title, slug, created, created, location, author)
+	formattedTime := created.Format(time.RFC3339)
+	return fmt.Sprintf(metadataTemplate, title, slug, formattedTime, formattedTime, location, author)
 }
 
 // SlugFromPost will create a post slug based on its title

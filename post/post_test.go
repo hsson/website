@@ -15,8 +15,8 @@ func TestMetadata(t *testing.T) {
 	answer := `---
 title: Hej på dig
 slug: 2017-12-08-hej-pa-dig
-created: 2017-12-08 16:53:23.236728 -0800 PST
-updated: 2017-12-08 16:53:23.236728 -0800 PST
+created: 2017-12-08T16:53:23-08:00
+updated: 2017-12-08T16:53:23-08:00
 location: Göteborg
 author: John Doe
 ---`
