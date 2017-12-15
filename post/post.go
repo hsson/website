@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
+	"html/template"
 	"os"
 	"path/filepath"
 	"sort"
@@ -94,7 +95,7 @@ func ParseFile(inFile string) (*Post, error) {
 	if err != nil {
 		return post, err
 	}
-	post.Content = content.String()
+	post.Content = template.HTML(content.String())
 	if err := scanner.Err(); err != nil {
 		return post, err
 	}

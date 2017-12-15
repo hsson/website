@@ -1,17 +1,20 @@
 package post
 
-import "time"
-import "fmt"
+import (
+	"fmt"
+	"html/template"
+	"time"
+)
 
 // Post represents a blog post with both metadata and content
 type Post struct {
-	Title    string    `yaml:"title"`
-	Slug     string    `yaml:"slug"`
-	Created  time.Time `yaml:"created"`
-	Updated  time.Time `yaml:"updated"`
-	Location string    `yaml:"location"`
-	Author   string    `yaml:"author"`
-	Content  string    `yaml:"-"`
+	Title    string        `yaml:"title"`
+	Slug     string        `yaml:"slug"`
+	Created  time.Time     `yaml:"created"`
+	Updated  time.Time     `yaml:"updated"`
+	Location string        `yaml:"location"`
+	Author   string        `yaml:"author"`
+	Content  template.HTML `yaml:"-"`
 }
 
 const timeFormat = "2006-01-02 15:04 (UTC-0700)"
